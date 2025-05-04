@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
     }`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-          <span className="text-blue-600 dark:text-blue-400">Dev</span>Portfolio
+          <span className="text-blue-600 dark:text-blue-400">Meet</span>Me
         </div>
 
         {/* Desktop Navigation */}
