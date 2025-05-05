@@ -4,15 +4,15 @@ export const projects: Project[] = [
   {
     id: 1,
     title: 'Blockchain Voting System',
-    description: 'A robust RESTful API built with NestJS for an e-commerce platform. Features include authentication, product management, order processing, and payment integration.',
-    technologies: ['NestJS', 'TypeScript', 'PostgreSQL', 'JWT', 'Swagger'],
+    description: 'A Proof of Concept (POC) blockchain-based voting system that provides secure, time-based voting using Solidity and Hardhat. It includes features like user registration, voting, and result tallying.',
+    technologies: ['Solidity', 'TypeScript', 'JavaScript', 'Ganache', 'Truffle'],
     githubUrl: 'https://github.com/EtomCoda/Voting-System-Smart-Contract',
   },
   {
     id: 2,
     title: 'Gas ordering system',
-    description: 'A microservice architecture for task management using NestJS. Includes user management, task creation and assignment, notifications, and reporting.',
-    technologies: ['NestJS', 'TypeScript', 'MongoDB', 'RabbitMQ', 'Docker'],
+    description: 'E-commerce gas ordering website built with NextJS. Features include authentication, product management, order processing, and payment integration.',
+    technologies: ['NextJS', 'TypeScript', 'Supabase'],
     githubUrl: 'https://github.com/EtomCoda/BobchiWebApp',
   },
   {
@@ -22,11 +22,5 @@ export const projects: Project[] = [
     technologies: ['NestJS', 'TypeScript', 'Socket.io', 'Redis', 'MongoDB'],
     githubUrl: 'https://github.com/EtomCoda/Unlimited_polls',
   },
-  {
-    id: 4,
-    title: 'Blog Platform Backend',
-    description: 'A feature-rich backend for a blog platform with content management, user authentication, commenting system, and analytics.',
-    technologies: ['NestJS', 'TypeScript', 'PostgreSQL', 'TypeORM', 'AWS S3'],
-    githubUrl: 'https://github.com/yourusername/blog-platform',
-  },
+  
 ];
