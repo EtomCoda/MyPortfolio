@@ -18,8 +18,8 @@ export const projects: Project[] = [
   {
     id: 3,
     title: 'Polls Voting Application',
-    description: 'A scalable WebSocket-based chat API built with NestJS. Supports private messaging, group chats, message history, and user presence.',
-    technologies: ['NestJS', 'TypeScript', 'Socket.io', 'Redis', 'MongoDB'],
+    description: 'A poll creating and voting app for opinions of all kinds.',
+    technologies: ['React Native', 'TypeScript', 'Supabase'],
     githubUrl: 'https://github.com/EtomCoda/Unlimited_polls',
   },
   
