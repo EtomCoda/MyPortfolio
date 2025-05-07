@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { ThemeMode } from '../types';
-import { Image } from 'lucide-react';
-
 interface HeaderProps {
   theme: ThemeMode;
   toggleTheme: () => void;
@@ -43,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
     }`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-          <img src="../img/metransparent.png" alt="Logo" className="inline-block h-8 w-8 mr-2" />
+          <img src="src/img/metransparent.png" alt="Logo" className="inline-block h-8 w-8 mr-2" />
           <span className="text-blue-600 dark:text-blue-400">Meet</span>Me
         </div>
 
