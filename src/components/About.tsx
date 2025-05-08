@@ -44,9 +44,8 @@ const About: React.FC = () => {
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 md:p-8 order-2 md:order-1">
             <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               I'm a passionate backend developer with expertise in building
-              scalable and maintainable applications using NestJS and
-              TypeScript. With a strong foundation in software architecture and
-              design patterns, I create efficient, secure, and performant
+              scalable and maintainable applications using NodeJS and
+              Express. I create efficient, secure, and performant
               backend solutions.
             </p>
 
