@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
             <div className="relative w-64 h-64 md:w-80 md:h-80">
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500 to-green-400 rounded-2xl opacity-20 dark:opacity-30 animate-pulse"></div>
               <div className="absolute top-4 left-4 right-4 bottom-4 bg-white dark:bg-gray-800 rounded-xl shadow-lg flex items-center justify-center">
-                <img src="src/public/metransparent.png" alt="myavatar"> 
+                <img src="src/assets/images/metransparent.png" alt="myavatar"/> 
               </div>
             </div>
           </div>
