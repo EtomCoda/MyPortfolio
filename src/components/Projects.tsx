@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Github, ExternalLink, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Github, ExternalLink, ChevronRight, ChevronLeft, Image } from 'lucide-react';
 import { Project as ProjectType } from '../types';
 import { projects } from '../data/projects';
+import ImageModal from './ImageModal';
 
 interface ProjectCardProps {
   project: ProjectType;
+  onImageClick: (images: string[], title: string) => void;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, onImageClick }) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden h-full flex flex-col transition-transform hover:translate-y-[-4px] hover:shadow-lg">
       <div className="p-6 flex-1">
@@ -25,6 +27,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
       </div>
       <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-4">
+        {project.images && project.images.length > 0 && (
+          <button
+            onClick={() => onImageClick(project.images!, project.title)}
+            className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+            aria-label="View project image"
+          >
+            <Image size={20} />
+          </button>
+        )}
         {project.githubUrl && (
           <a
             href={project.githubUrl}
@@ -54,6 +65,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
 const Projects: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(0);
+  const [modalImage, setModalImage] = useState<{ images: string[]; title: string } | null>(null);
   const projectsPerPage = 2;
   const totalPages = Math.ceil(projects.length / projectsPerPage);
   
@@ -68,6 +80,14 @@ const Projects: React.FC = () => {
 
   const prevPage = () => {
     setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+  };
+
+  const handleImageClick = (images: string[], title: string) => {
+    setModalImage({ images, title });
+  };
+
+  const closeModal = () => {
+    setModalImage(null);
   };
 
   return (
@@ -87,7 +107,7 @@ const Projects: React.FC = () => {
 
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           {visibleProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.id} project={project} onImageClick={handleImageClick} />
           ))}
         </div>
 
@@ -110,6 +130,13 @@ const Projects: React.FC = () => {
             <ChevronRight size={24} />
           </button>
         </div>
+
+        <ImageModal
+          isOpen={!!modalImage}
+          onClose={closeModal}
+          images={modalImage?.images || []}
+          title={modalImage?.title || ''}
+        />
       </div>
     </section>
   );
