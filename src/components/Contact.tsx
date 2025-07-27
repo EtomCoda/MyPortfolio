@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { Mail, MapPin, Send, Github, Linkedin } from 'lucide-react';
 import { socialLinks } from '../data/socialLinks';
 
@@ -46,24 +47,55 @@ const ContactField: React.FC<ContactFieldProps> = ({
 };
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = React.useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+  const form = useRef<HTMLFormElement>(null);
+  const [isSending, setIsSending] = useState(false);
+  const [notification, setNotification] = useState<{
+    message: string;
+    type: 'success' | 'error';
+  } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const SERVICE_ID = import.meta.env.VITE_SERVICE_ID || 'YOUR_SERVICE_ID';
+  const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+  const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+
+  if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+    console.error('EmailJS environment variables are not set correctly.');
+    return null;
+  }
+
+  const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
-    //  handle form submission here
-    alert('Thank you for your message! I will get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
-  };
+    if (!form.current || isSending) return;
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setIsSending(true);
+    setNotification(null);
+
+    emailjs
+      .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, {
+        publicKey: PUBLIC_KEY,
+      })
+      .then(
+        () => {
+          setNotification({
+            message: 'Message sent successfully! I\'ll get back to you soon!.',
+            type: 'success',
+          });
+          form.current?.reset();
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+          setNotification({
+            message: 'Something\'s wrong somewhere... Please try again later.',
+            type: 'error',
+          });
+        }
+      )
+      .finally(() => {
+        setIsSending(false);
+        setTimeout(() => {
+          setNotification(null);
+        }, 5000);
+      });
   };
 
   return (
@@ -86,7 +118,7 @@ const Contact: React.FC = () => {
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
               Send Me a Message
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={form} onSubmit={sendEmail} className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
@@ -98,8 +130,6 @@ const Contact: React.FC = () => {
                   type="text"
                   id="name"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
                   required
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                   placeholder="John Doe"
@@ -116,11 +146,25 @@ const Contact: React.FC = () => {
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
                   required
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                   placeholder="john@example.com"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="title"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >
+                  Title
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  placeholder="Subject of your message"
                 />
               </div>
               <div>
@@ -133,8 +177,6 @@ const Contact: React.FC = () => {
                 <textarea
                   id="message"
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
                   required
                   rows={5}
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
@@ -143,10 +185,22 @@ const Contact: React.FC = () => {
               </div>
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2"
+                disabled={isSending}
+                className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
-                Send Message <Send size={16} />
+                {isSending ? 'Sending...' : 'Send Message'} <Send size={16} />
               </button>
+              {notification && (
+                <div
+                  className={`mt-4 p-4 rounded-lg text-center ${
+                    notification.type === 'success'
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-red-100 text-red-800'
+                  }`}
+                >
+                  {notification.message}
+                </div>
+              )}
             </form>
           </div>
 

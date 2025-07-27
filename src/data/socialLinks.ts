@@ -13,7 +13,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     platform: 'Email',
-    url: 'mailto:etomdanielex@gmail.com',
+    url: 'mailto:etomzworks@gmail.com',
     icon: 'Mail',
   },
 ];
