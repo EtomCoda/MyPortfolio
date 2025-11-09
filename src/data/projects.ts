@@ -17,13 +17,14 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/EtomCoda/BobchiWebApp',
     liveUrl: 'https://bobchiwebapp.vercel.app/',
   },
-  {
+   {
     id: 3,
-    title: 'Polls Voting Application',
-    description: 'A poll creating and voting app for opinions of all kinds.',
-    technologies: ['React Native', 'TypeScript', 'Supabase'],
-    images: ['/images/metransparent.png'], 
-    githubUrl: 'https://github.com/EtomCoda/Unlimited_polls',
+    title: 'CGPA GPA Tracker',
+    description: 'A CGPA and GPA tracker application that helps students calculate and manage their academic performance.',
+    technologies: ['React', 'TypeScript', 'Vite'],
+    images: ['/images/cgpa-tracker.png'],
+    githubUrl: 'https://github.com/EtomCoda/CGPA-Calculator',
+    liveUrl: 'https://c-gpa-tracker.vercel.app/',
   },
   {
     id: 4,
@@ -34,5 +35,6 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/EtomCoda/InvestorProfiler-Backend',
     
   },
-  
+ 
+
 ];

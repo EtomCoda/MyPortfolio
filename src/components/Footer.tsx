@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
           </nav>
 
           <div className="text-gray-600 dark:text-gray-400 text-sm flex items-center">
-            <span>© {year} - Made by Etom</span>
+            <span>© {year} EtomCoda</span>
           </div>
         </div>
       </div>
