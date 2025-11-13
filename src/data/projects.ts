@@ -10,6 +10,14 @@ export const projects: Project[] = [
   },
   {
     id: 2,
+    title: 'Horizon',
+    description: 'A CGPA and GPA tracker application that helps students calculate and manage their academic performance.',
+    technologies: ['React', 'TypeScript', 'Vite'],
+    images: ['/images/cgpa-tracker.png'],
+    liveUrl: 'https://yourhorizon.vercel.app/',
+  },
+  {
+    id: 3,
     title: 'Gas ordering system',
     description: 'E-commerce gas ordering website built with NextJS. Features include authentication, product management, order processing, and payment integration.',
     technologies: ['NextJS', 'TypeScript', 'Supabase'],
@@ -17,15 +25,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/EtomCoda/BobchiWebApp',
     liveUrl: 'https://bobchiwebapp.vercel.app/',
   },
-   {
-    id: 3,
-    title: 'CGPA GPA Tracker',
-    description: 'A CGPA and GPA tracker application that helps students calculate and manage their academic performance.',
-    technologies: ['React', 'TypeScript', 'Vite'],
-    images: ['/images/cgpa-tracker.png'],
-    githubUrl: 'https://github.com/EtomCoda/CGPA-Calculator',
-    liveUrl: 'https://c-gpa-tracker.vercel.app/',
-  },
+   
   {
     id: 4,
     title: 'Investment Guide Application',
