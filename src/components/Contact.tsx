@@ -212,8 +212,8 @@ const Contact: React.FC = () => {
               <ContactField
                 icon={<Mail size={20} />}
                 title="Email"
-                content="etomdanielex@gmail.com"
-                link="mailto:etomdanielex@gmail.com"
+                content="etomzworks@gmail.com"
+                link="mailto:etomzworks@gmail.com"
               />
               {/* <ContactField 
                 icon={<Phone size={20} />}
